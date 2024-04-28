@@ -3,8 +3,12 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProtectedRoute from "@/ProtectedRoute";
 import { URLS } from "@/constants/urls";
+import CategoryGameSearch from "@/pages/CategoryGameSearch";
 import Dashboard from "@/pages/Dashboard";
 import Error from "@/pages/Error";
+import Game from "@/pages/Game";
+import GameInstance from "@/pages/GameInstance";
+import GameSearch from "@/pages/GameSearch";
 import MyProfile from "@/pages/MyProfile";
 import UserProfile from "@/pages/UserProfile";
 import App from "./App";
@@ -21,6 +25,22 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
+        path: URLS.GAMES,
+        element: <GameSearch />,
+      },
+      {
+        path: `${URLS.GAMES}/:id`,
+        element: <Game />,
+      },
+      {
+        path: `${URLS.CATEGORY_GAMES}/:id`,
+        element: <CategoryGameSearch />,
+      },
+      {
+        path: `${URLS.GAME_INSTANCE}/:id`,
+        element: <GameInstance />,
+      },
+      {
         path: `${URLS.PROFILE}/:id`,
         element: <UserProfile />,
       },
@@ -33,6 +53,7 @@ const router = createBrowserRouter([
           },
         ],
       },
+
     ],
   },
 ]);

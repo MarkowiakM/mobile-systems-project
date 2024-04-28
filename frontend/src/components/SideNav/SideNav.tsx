@@ -1,5 +1,7 @@
 import { FC } from "react";
 import { Home, Search } from "lucide-react";
+import { useRecoilValue } from "recoil";
+import { roleState } from "@/state/role";
 import { URLS } from "@/constants/urls";
 import SideNavLink from "./SideNavLink";
 import UserItem from "./UserItem";
@@ -17,6 +19,7 @@ const ALL_LINKS = [
 
 
 const SideNav: FC = () => {
+  const role = useRecoilValue(roleState);
 
   return (
     <div

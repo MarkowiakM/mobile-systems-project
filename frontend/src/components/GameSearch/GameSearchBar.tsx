@@ -8,9 +8,6 @@ import { useDebounce } from "use-debounce";
 import { roleState } from "@/state/role";
 import { Game } from "@/types/Game";
 import { GameApi } from "@/api/GameApi";
-import AddGameForm from "@/components/AddGameForm";
-import { Button } from "@/components/ui/button";
-import { Dialog } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -29,7 +26,6 @@ const GameSearchBar: FC<GameSearchBarProps> = ({ onGameClick, placeholder, categ
   const [showResults, setShowResults] = useState(false);
   const [debouncedSearch] = useDebounce(search, 500);
   const [blurTimeout, setBlurTimeout] = useState<NodeJS.Timeout | null>(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const {
     t,
@@ -110,13 +106,6 @@ const GameSearchBar: FC<GameSearchBarProps> = ({ onGameClick, placeholder, categ
                     {role !== "guest" && (
                       <>
                         <p className="p-2 italic">{t("cannotFindGame")}</p>
-                        <Button
-                          className="ml-auto mt-4 w-max"
-                          data-test="add-game"
-                          onClick={() => setIsDialogOpen(true)}
-                        >
-                          {t("addGame")}
-                        </Button>
                       </>
                     )}
                   </>
@@ -134,9 +123,6 @@ const GameSearchBar: FC<GameSearchBarProps> = ({ onGameClick, placeholder, categ
           </ScrollArea>
         </div>
       )}
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <AddGameForm close={() => setIsDialogOpen(false)} />
-      </Dialog>
     </div>
   );
 };

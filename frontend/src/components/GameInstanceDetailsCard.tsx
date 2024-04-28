@@ -4,8 +4,6 @@ import { GameInstance, GameInstanceDetails } from "@/types/GameInstance";
 import { stringToHexColor } from "@/utils/stringToColor";
 import { useTheme } from "../ThemeProvider";
 import { PriceBadge } from "./Badge";
-import { Stars } from "./Stars";
-import { Badge } from "./ui/badge";
 
 interface GameInstanceDetailsCardProps {
   gameInstance: GameInstance | GameInstanceDetails;
@@ -15,8 +13,6 @@ const GameInstanceDetailsCard: FC<GameInstanceDetailsCardProps> = ({
   gameInstance: {
     description,
     game: { name, image },
-    avgRating,
-    opinionsAmount,
     pricePerDay,
   },
 }) => {
@@ -47,16 +43,6 @@ const GameInstanceDetailsCard: FC<GameInstanceDetailsCardProps> = ({
         <h3 className="text-xl">{name}</h3>
         <div className="flex flex-row justify-between">
           <PriceBadge price={pricePerDay} />
-          {opinionsAmount > 0 ? (
-            <div className="flex flex-row gap-2">
-              <p className="text-base tracking-widest text-foreground">({opinionsAmount})</p>
-              <Stars count={Math.round(avgRating)} variant="secondary" />
-            </div>
-          ) : (
-            <Badge variant="secondary" className="w-max px-3 py-1">
-              {t("noOpinions")}
-            </Badge>
-          )}
         </div>
         <p className="mt-2 line-clamp-6 break-words italic">{description}</p>
       </div>

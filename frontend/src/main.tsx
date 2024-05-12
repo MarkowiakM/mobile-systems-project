@@ -10,6 +10,8 @@ import Game from "@/pages/Game";
 import GameInstance from "@/pages/GameInstance";
 import GameSearch from "@/pages/GameSearch";
 import MyProfile from "@/pages/MyProfile";
+import ReservationDetails from "@/pages/ReservationDetails";
+import ReservationsHistory from "@/pages/ReservationsHistory";
 import UserProfile from "@/pages/UserProfile";
 import App from "./App";
 import "./index.css";
@@ -51,9 +53,16 @@ const router = createBrowserRouter([
             path: URLS.MY_PROFILE,
             element: <MyProfile />,
           },
+          {
+            path: URLS.MY_RESERVATIONS,
+            element: <ReservationsHistory />,
+          },
+          {
+            path: `${URLS.MY_RESERVATIONS}/:id`,
+            element: <ReservationDetails />,
+          },
         ],
       },
-
     ],
   },
 ]);

@@ -9,6 +9,7 @@ import { URLS } from "@/constants/urls";
 import { GameInstanceDetails } from "@/types/GameInstance";
 import { UserApi } from "@/api/UserApi";
 import PriceBadge from "@/components/Badge/PriceBadge";
+import { Stars } from "@/components/Stars";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DialogTrigger, Dialog } from "@/components/ui/dialog";
@@ -107,6 +108,18 @@ const GameInstanceDetailsSection: FC<GameDetailsSectionProps> = ({ gameInstance 
           <h1 className="p-2 text-xl font-bold xl:text-3xl">{gameInstance.game.name}</h1>
           <div className="flex flex-col items-end gap-2 p-3">
             <PriceBadge price={gameInstance.pricePerDay} />
+            {gameInstance.opinionsAmount > 0 ? (
+              <div className="flex flex-row gap-2">
+                <p className="text-base tracking-widest text-foreground">
+                  ({gameInstance.opinionsAmount})
+                </p>
+                <Stars count={Math.round(gameInstance.avgRating)} variant="secondary" />
+              </div>
+            ) : (
+              <Badge variant="secondary" className="w-max px-3 py-1">
+                {t("noOpinions")}
+              </Badge>
+            )}
             {!gameInstance.active && (
               <Badge variant="destructive" className="uppercase">
                 {t("deactivated")}

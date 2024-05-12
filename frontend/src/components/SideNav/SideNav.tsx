@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Home, Search } from "lucide-react";
+import { Home, CalendarDays, Search, Dices } from "lucide-react";
 import { useRecoilValue } from "recoil";
 import { roleState } from "@/state/role";
 import { URLS } from "@/constants/urls";
@@ -17,6 +17,12 @@ const ALL_LINKS = [
   },
 ];
 
+const USER_LINKS = [
+  {
+    path: URLS.MY_RESERVATIONS,
+    icon: <CalendarDays size={40} strokeWidth={1} />,
+  },
+];
 
 const SideNav: FC = () => {
   const role = useRecoilValue(roleState);
@@ -34,6 +40,8 @@ const SideNav: FC = () => {
       </div>
 
       <div className="flex flex-col items-center gap-3">
+        {role !== "guest" &&
+          USER_LINKS.map(({ icon, path }) => <SideNavLink icon={icon} path={path} key={path} />)}
         <UserItem />
       </div>
     </div>

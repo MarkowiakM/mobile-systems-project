@@ -10,6 +10,7 @@ import { Map, LocationButton, LocationMarker } from "@/components/Map";
 import Spinner from "@/components/ui/Spinner";
 import { useToast } from "@/components/ui/use-toast";
 import GameInstanceDetailsSection from "./GameInstanceDetailsSection";
+import GameInstanceOpinions from "./GameInstanceOpinions";
 import GameInstanceUserDetailsSection from "./GameInstanceUserDetailsSection";
 
 const GameInstance: FC = () => {
@@ -84,6 +85,7 @@ const GameInstance: FC = () => {
               </div>
             </div>
             <div className="flex h-[calc(100%-400px)] rounded-lg bg-section">
+              <GameInstanceOpinions gameInstance={gameInstance} />
             </div>
           </div>
         </>

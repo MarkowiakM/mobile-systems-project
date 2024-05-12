@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { URLS } from "@/constants/urls";
 import { UserApi } from "@/api/UserApi";
+import { Opinions } from "@/components/Opinions";
 import UserDetails from "@/components/UserDetails";
 import GameInstancesSection from "@/components/UserGameInstances";
 import { useToast } from "@/components/ui/use-toast";
@@ -33,6 +34,7 @@ const MyProfile: FC = () => {
           <UserDetails user={user} isLoading={isLoading} showEdit />
         </div>
         <div className="flex max-h-[150px] rounded-lg  bg-section xl:h-[calc(100%-389px)] xl:max-h-[calc(100%-389px)]">
+          <Opinions isMyPage={true} user={user} />
         </div>
       </div>
       <div className="h-[calc(100%-350px)] flex-grow rounded-lg bg-section p-4 xl:h-full xl:w-1/2">

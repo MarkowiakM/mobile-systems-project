@@ -24,6 +24,13 @@ const USER_LINKS = [
   },
 ];
 
+const ADMIN_LINKS = [
+  {
+    path: URLS.GAME_REQUESTS,
+    icon: <Dices size={40} strokeWidth={1} />,
+  },
+];
+
 const SideNav: FC = () => {
   const role = useRecoilValue(roleState);
 
@@ -42,6 +49,8 @@ const SideNav: FC = () => {
       <div className="flex flex-col items-center gap-3">
         {role !== "guest" &&
           USER_LINKS.map(({ icon, path }) => <SideNavLink icon={icon} path={path} key={path} />)}
+        {role === "admin" &&
+          ADMIN_LINKS.map(({ icon, path }) => <SideNavLink icon={icon} path={path} key={path} />)}
         <UserItem />
       </div>
     </div>

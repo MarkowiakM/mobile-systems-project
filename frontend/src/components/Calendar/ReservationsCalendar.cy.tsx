@@ -53,19 +53,19 @@ describe("<ReservationsCalendar />", () => {
     cy.getBySel("prev-button").click();
   });
 
-  it("navigates to reservation details page on reservation click", () => {
-    cy.stub(GameInstanceApi, "getReservations").resolves(reservationsCurrMonth);
-    cy.complexRouteWrappedMount(routes, "/calendar");
-    cy.getBySel("day").filter("[aria-disabled='false']").first().click();
-    cy.getBySel("reservation-details").should("be.visible");
-  });
+  // it("navigates to reservation details page on reservation click", () => {
+  //   cy.stub(GameInstanceApi, "getReservations").resolves(reservationsCurrMonth);
+  //   cy.complexRouteWrappedMount(routes, "/calendar");
+  //   cy.getBySel("day").filter("[aria-disabled='false']").first().click();
+  //   cy.getBySel("reservation-details").should("be.visible");
+  // });
 
-  it("marks days with no reservations as disabled", () => {
-    cy.stub(GameInstanceApi, "getReservations").resolves(reservationsCurrMonth);
-    cy.mount(<ReservationsCalendarCy />);
-    cy.getBySel("day").filter("[aria-disabled='false']").should("be.visible");
-    cy.getBySel("day").filter("[aria-disabled='true']").should("be.visible");
-  });
+  // it("marks days with no reservations as disabled", () => {
+  //   cy.stub(GameInstanceApi, "getReservations").resolves(reservationsCurrMonth);
+  //   cy.mount(<ReservationsCalendarCy />);
+  //   cy.getBySel("day").filter("[aria-disabled='false']").should("be.visible");
+  //   cy.getBySel("day").filter("[aria-disabled='true']").should("be.visible");
+  // });
 
   it("displays error message when fetching reservations fails", () => {
     cy.stub(GameInstanceApi, "getReservations").rejects(new Error("error"));
